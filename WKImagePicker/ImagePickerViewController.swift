@@ -53,7 +53,7 @@ class ImagePickerViewController: UIViewController,UICollectionViewDelegate,UICol
         
         //let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = UICollectionViewScrollDirection.vertical;
+        layout.scrollDirection = UICollectionViewScrollDirection.vertical
         //间隔
         let spacing:CGFloat = 1
         //水平间隔
