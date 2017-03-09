@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-private let reuseIdentifierOne = "CameraViewCell"
+
 
 private let reuseIdentifier = "ImagepickerViewCell"
 
@@ -70,7 +70,6 @@ class ImagePickerViewController: UIViewController,UICollectionViewDelegate,UICol
         collectionView.backgroundColor = UIColor.white
         self.view.addSubview(collectionView)
         
-        collectionView.register(CameraViewCell.self, forCellWithReuseIdentifier: reuseIdentifierOne)
         collectionView.register(ImagepickerViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     }
@@ -252,20 +251,16 @@ class ImagePickerViewController: UIViewController,UICollectionViewDelegate,UICol
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let num:Int = self.pictursArray.count
         
-        return num + 1
+        return num
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.row == 0 {
-            let cell:CameraViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierOne, for: indexPath) as! CameraViewCell
-            return cell
-        }else{
+  
             let cell:ImagepickerViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImagepickerViewCell
             
             //获取相应位置的图片
             var asset = PHAsset()
-            asset = self.pictursArray.object(at: (indexPath.row - 1)) as! PHAsset
+            asset = self.pictursArray.object(at: indexPath.row) as! PHAsset
             
             let imageOptions = PHImageRequestOptions()
             imageOptions.resizeMode = PHImageRequestOptionsResizeMode.exact
@@ -282,14 +277,13 @@ class ImagePickerViewController: UIViewController,UICollectionViewDelegate,UICol
             })
             
             return cell
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
         var asset = PHAsset()
-        asset = self.pictursArray.object(at: (indexPath.row - 1)) as! PHAsset
+        asset = self.pictursArray.object(at:indexPath.row) as! PHAsset
         
         let imageOptions = PHImageRequestOptions()
         imageOptions.resizeMode = PHImageRequestOptionsResizeMode.exact
@@ -365,24 +359,6 @@ class ImagePickerViewController: UIViewController,UICollectionViewDelegate,UICol
     }
     
 }
-class CameraViewCell: UICollectionViewCell {
-    
-    override init(frame:CGRect){
-        super.init(frame: frame)
-        
-        let imageView = UIImageView(image : UIImage(named:"publish_camera"))
-        imageView.frame = self.bounds
-        self.addSubview(imageView)
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
 
 class ImagepickerViewCell: UICollectionViewCell {
     

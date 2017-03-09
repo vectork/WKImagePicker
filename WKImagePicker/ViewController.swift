@@ -16,11 +16,11 @@ class ViewController: UIViewController {
 
 
         let pushButton = UIButton()
-        pushButton.frame = CGRect(x:100,y:100,width:50,height:50)
+        pushButton.frame = CGRect(x:100,y:100,width:100,height:100)
         pushButton.center = self.view.center
-        pushButton.setTitle("push", for: .normal)
-        pushButton.setTitleColor(UIColor.red, for: .normal)
-        pushButton.backgroundColor = UIColor.gray
+        pushButton.setTitle("相册", for: .normal)
+        pushButton.setTitleColor(UIColor.white, for: .normal)
+        pushButton.backgroundColor = UIColor.cyan
         pushButton.addTarget(self, action:#selector(pushed), for: .touchUpInside)
         self.view.addSubview(pushButton)
         
